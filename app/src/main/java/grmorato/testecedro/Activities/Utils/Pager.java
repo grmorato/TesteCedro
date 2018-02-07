@@ -1,0 +1,44 @@
+package grmorato.testecedro.Activities.Utils;
+
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentStatePagerAdapter;
+
+import java.util.ArrayList;
+
+/**
+ * Created by grmorato on 07/02/2018.
+ */
+
+public class Pager extends FragmentStatePagerAdapter
+{
+    private final int countTabs;
+    private ArrayList<Fragment> listFragment;
+
+    public Pager(FragmentManager fm, int countTabs) {
+        super(fm);
+        this.countTabs = countTabs;
+    }
+
+    @Override
+    public Fragment getItem(int position)
+    {
+        if(getListFragment().size() >0)
+            return getListFragment().get(position);
+        else
+            return null;
+
+    }
+
+    @Override
+    public int getCount() {
+        return countTabs;
+    }
+
+    public ArrayList<Fragment> getListFragment()
+    {
+        if(listFragment == null)
+            listFragment = new ArrayList<>();
+        return listFragment;
+    }
+}
