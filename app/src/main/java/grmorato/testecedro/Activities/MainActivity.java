@@ -16,6 +16,7 @@ import com.facebook.login.widget.LoginButton;
 import java.util.concurrent.Callable;
 
 import grmorato.testecedro.Activities.Utils.Pager;
+import grmorato.testecedro.Library.LibFacebookService;
 import grmorato.testecedro.Library.LibMobile;
 import grmorato.testecedro.R;
 
@@ -53,8 +54,8 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     private void ConfigFacebookButton()
     {
         LoginButton loginButton = findViewById(R.id.login_button);
-        callbackManager = LibMobile.FacebookConfig(loginButton ,null);
-        LibMobile.FacebookStateLogin(new Callable() {
+        callbackManager = LibFacebookService.FacebookConfig(loginButton ,null);
+        LibFacebookService.FacebookStateLogin(new Callable() {
 
             @Override
             public Object call() throws Exception {

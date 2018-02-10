@@ -9,13 +9,9 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
 
-import java.util.ArrayList;
-import java.util.concurrent.Callable;
-
-import grmorato.testecedro.Activities.Utils.AdapterList;
 import grmorato.testecedro.Controllers.CtrlCountry;
-import grmorato.testecedro.Data.Pais;
 import grmorato.testecedro.Controllers.AsyncTaskLoadWsCountries;
+import grmorato.testecedro.Library.LibMobile;
 import grmorato.testecedro.R;
 
 public class CountriesActivity extends Fragment implements SwipeRefreshLayout.OnRefreshListener {
@@ -41,13 +37,6 @@ public class CountriesActivity extends Fragment implements SwipeRefreshLayout.On
     private void Init(View view)
     {
         gridview = view.findViewById(R.id.gridviewCouontries);
-
-        gridview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            public void onItemClick(AdapterView<?> parent, View v,
-                                    int position, long id) {
-
-            }
-        });
 
         swipeRefresh = view.findViewById(R.id.swipeRefreshCountries);
         swipeRefresh.setOnRefreshListener(this);

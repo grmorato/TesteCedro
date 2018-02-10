@@ -2,17 +2,20 @@ package grmorato.testecedro.Data;
 
 import android.graphics.Bitmap;
 
+import java.io.Serializable;
+
 /**
  * Created by grmorato on 09/02/2018.
  */
 
-public class Pais
+public class Pais implements Serializable
 {
     private String name;
     private String flag;
     private String alpha2Code;
     private String area;
     private String population;
+    private String capital;
 
 
     public String getName() {
@@ -53,5 +56,13 @@ public class Pais
 
     public void setPopulation(String population) {
         this.population = population;
+    }
+
+    public String getCapital() {
+        return capital;
+    }
+
+    public void setCapital(String capital) {
+        this.capital = capital;
     }
 }

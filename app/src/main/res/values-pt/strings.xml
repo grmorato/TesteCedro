@@ -1,4 +1,7 @@
 <resources>
     <string name="nome">Nome</string>
     <string name="app_name">TesteCedro</string>
+    <string name="population">População</string>
+    <string name="date">Data Visita</string>
+    <string name="visitou">Já Visitou</string>
 </resources>
