@@ -29,7 +29,8 @@ public class AsyncTaskLoadWsCountries extends AsyncTask<Void, Void,ArrayList<Pai
 
     @Override
     protected void onPostExecute(ArrayList<Pais> listPaises) {
-        if(listPaises != null) {
+        if(listPaises != null)
+        {
             getGridview().setAdapter(new AdapterList(getContext(), listPaises));
             getSwipeRefresh().setRefreshing(false);
         }

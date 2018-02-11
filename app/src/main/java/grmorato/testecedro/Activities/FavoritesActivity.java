@@ -6,6 +6,7 @@ import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -14,6 +15,7 @@ import java.util.ArrayList;
 import grmorato.testecedro.Activities.Utils.RecycleAdapter;
 import grmorato.testecedro.Controllers.CtrlCountry;
 import grmorato.testecedro.Controllers.CtrlFavorites;
+import grmorato.testecedro.Library.OnItemClickListener;
 import grmorato.testecedro.Models.Pais;
 import grmorato.testecedro.R;
 
@@ -41,7 +43,6 @@ public class FavoritesActivity extends Fragment implements SwipeRefreshLayout.On
         listView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(getContext());
         listView.setLayoutManager(mLayoutManager);
-
         swipeRefresh = view.findViewById(R.id.swipeRefreshFavoritos);
         swipeRefresh.setOnRefreshListener(this);
         swipeRefresh.post(new Runnable()
@@ -61,7 +62,12 @@ public class FavoritesActivity extends Fragment implements SwipeRefreshLayout.On
     {
         ArrayList<Pais> listPaises = ctrlFavorites.GetListPaises();
         if(listPaises != null) {
-            RecycleAdapter recycleAdapter = new RecycleAdapter(getContext(), listPaises);
+            RecycleAdapter recycleAdapter = new RecycleAdapter(getContext(), listPaises, new OnItemClickListener() {
+                @Override
+                public void onItemClick(Pais pais) {
+                    CtrlCountry.StartDetail(getContext(),pais);
+                }
+            });
             listView.setAdapter(recycleAdapter);
         }
         swipeRefresh.setRefreshing(false);

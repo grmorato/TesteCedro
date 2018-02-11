@@ -9,9 +9,9 @@
 
     <LinearLayout
         android:id="@+id/sinalCountry"
-        android:layout_width="@dimen/sinal"
+        android:layout_width="match_parent"
         android:layout_height="@dimen/sinal"
-        android:orientation="vertical"/>
+        android:orientation="vertical" />
     <WebView
         android:id="@+id/webViewCountryFlag"
         android:layout_width="match_parent"

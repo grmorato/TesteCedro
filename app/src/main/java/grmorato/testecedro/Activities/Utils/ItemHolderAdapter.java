@@ -4,6 +4,7 @@ import android.content.ClipData;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.webkit.WebView;
+import android.widget.CheckBox;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -17,6 +18,7 @@ public class ItemHolderAdapter extends RecyclerView.ViewHolder
 {
     private TextView texto;
     private WebView webView;
+    private CheckBox check;
 
     public ItemHolderAdapter(View view)
     {
@@ -25,6 +27,7 @@ public class ItemHolderAdapter extends RecyclerView.ViewHolder
         {
             setTexto((TextView) view.findViewById(R.id.textViewFavName));
             setWebView((WebView) view.findViewById(R.id.webViewFavFlag));
+            setCheck((CheckBox) view.findViewById(R.id.checkedDetail));
         }
     }
 
@@ -43,5 +46,13 @@ public class ItemHolderAdapter extends RecyclerView.ViewHolder
 
     public void setWebView(WebView webView) {
         this.webView = webView;
+    }
+
+    public CheckBox getCheck() {
+        return check;
+    }
+
+    public void setCheck(CheckBox check) {
+        this.check = check;
     }
 }

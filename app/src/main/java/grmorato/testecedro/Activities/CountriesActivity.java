@@ -49,9 +49,7 @@ public class CountriesActivity extends Fragment implements SwipeRefreshLayout.On
                 LoadValues();
             }
         });
-
     }
-
 
     private void LoadValues()
     {
