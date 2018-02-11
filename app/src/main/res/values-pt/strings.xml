@@ -4,4 +4,7 @@
     <string name="population">População</string>
     <string name="date">Data Visita</string>
     <string name="visitou">Já Visitou</string>
+    <string name="Yes">Sim</string>
+    <string name="No">Não</string>
+    <string name="MsgSalvar">Deseja salvar que visitou esse país?</string>
 </resources>

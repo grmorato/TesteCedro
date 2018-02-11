@@ -2,11 +2,11 @@ package grmorato.testecedro.Data;
 
 import android.content.Context;
 import android.database.Cursor;
-import android.graphics.BitmapFactory;
 
 import java.util.ArrayList;
 
 import grmorato.testecedro.Library.LibEnuns;
+import grmorato.testecedro.Models.UserProfile;
 
 /**
  * Created by grmorato on 09/02/2018.

@@ -10,8 +10,6 @@ import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
-import com.facebook.Profile;
-import com.facebook.ProfileTracker;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 
@@ -20,7 +18,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 import java.util.concurrent.Callable;
 
-import grmorato.testecedro.Data.UserProfile;
+import grmorato.testecedro.Models.UserProfile;
 
 /**
  * Created by grmorato on 10/02/2018.

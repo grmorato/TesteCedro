@@ -1,4 +1,4 @@
-package grmorato.testecedro.Data;
+package grmorato.testecedro.Models;
 
 import android.graphics.Bitmap;
 
@@ -16,6 +16,7 @@ public class Pais implements Serializable
     private String area;
     private String population;
     private String capital;
+    private String DateVisit;
 
 
     public String getName() {
@@ -64,5 +65,13 @@ public class Pais implements Serializable
 
     public void setCapital(String capital) {
         this.capital = capital;
+    }
+
+    public String getDateVisit() {
+        return DateVisit;
+    }
+
+    public void setDateVisit(String dateVisit) {
+        DateVisit = dateVisit;
     }
 }

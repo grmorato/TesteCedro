@@ -4,23 +4,17 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    >
+    android:orientation="vertical">
 
-    <LinearLayout
-        android:id="@+id/sinalCountry"
-        android:layout_width="@dimen/sinal"
-        android:layout_height="@dimen/sinal"
-        android:orientation="vertical"/>
     <WebView
-        android:id="@+id/webViewCountryFlag"
+        android:id="@+id/webViewFavFlag"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         app:srcCompat="@drawable/cedro" />
 
     <TextView
-        android:id="@+id/textViewCountryName"
+        android:id="@+id/textViewFavName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"

@@ -1,9 +1,9 @@
 package grmorato.testecedro.Controllers;
 
 import android.content.Context;
-import com.facebook.Profile;
+
 import grmorato.testecedro.Data.RepositoryProfile;
-import grmorato.testecedro.Data.UserProfile;
+import grmorato.testecedro.Models.UserProfile;
 import grmorato.testecedro.Library.LibFacebookService;
 
 /**

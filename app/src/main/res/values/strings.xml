@@ -101,5 +101,8 @@
     <string name="population">Population</string>
     <string name="date">Date Visit</string>
     <string name="visitou">Already Visited</string>
+    <string name="Yes">Yes</string>
+    <string name="No">No</string>
+    <string name="MsgSalvar">Do you want to save that visited this country?</string>
 
 </resources>

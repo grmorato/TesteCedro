@@ -2,16 +2,13 @@ package grmorato.testecedro.Controllers;
 
 import android.content.Context;
 import android.os.AsyncTask;
-import android.provider.ContactsContract;
 import android.support.v4.widget.SwipeRefreshLayout;
-import android.util.Log;
 import android.widget.GridView;
 
 import java.util.ArrayList;
-import java.util.concurrent.Callable;
 
 import grmorato.testecedro.Activities.Utils.AdapterList;
-import grmorato.testecedro.Data.Pais;
+import grmorato.testecedro.Models.Pais;
 
 /**
  * Created by grmorato on 09/02/2018.

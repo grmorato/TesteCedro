@@ -4,6 +4,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.webkit.WebView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import grmorato.testecedro.R;
@@ -14,6 +15,8 @@ import grmorato.testecedro.R;
 
 public class ItemListAdapter
 {
+
+    private LinearLayout sinal;
     private TextView texto;
     private WebView webView;
 
@@ -31,5 +34,13 @@ public class ItemListAdapter
 
     public void setWebView(WebView webView) {
         this.webView = webView;
+    }
+
+    public LinearLayout getSinal() {
+        return sinal;
+    }
+
+    public void setSinal(LinearLayout sinal) {
+        this.sinal = sinal;
     }
 }

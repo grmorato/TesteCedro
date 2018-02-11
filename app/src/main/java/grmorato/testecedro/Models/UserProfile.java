@@ -1,6 +1,5 @@
-package grmorato.testecedro.Data;
+package grmorato.testecedro.Models;
 
-import android.graphics.Bitmap;
 
 /**
  * Created by grmorato on 09/02/2018.

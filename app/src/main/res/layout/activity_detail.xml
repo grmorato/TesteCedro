@@ -22,6 +22,16 @@
     </android.support.v7.widget.Toolbar>
     </android.support.design.widget.AppBarLayout>
 
+    <CheckedTextView
+        android:id="@+id/checkedDetail"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableLeft="?android:attr/listChoiceIndicatorMultiple"
+        android:checked="true"
+        android:text="@string/visitou"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -87,41 +97,30 @@
         android:textColor="@android:color/black"
         android:textSize="@dimen/fontSize_profile" />
 
-    <CheckedTextView
-        android:id="@+id/checkedDetail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:drawableLeft="?android:attr/listChoiceIndicatorMultiple"
-        android:checked="true"
-        android:text="@string/visitou"
-        android:textSize="20dp"
-        android:textStyle="bold" />
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal">
 
         <EditText
-            android:id="@+id/editText"
+            android:id="@+id/editTextDateTime"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1"
             android:ems="10"
             android:enabled="false"
             android:inputType="textPersonName"
-            android:text="Name"
             android:textSize="20dp" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/buttonDate"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:background="@drawable/date" />
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/buttonTime"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"

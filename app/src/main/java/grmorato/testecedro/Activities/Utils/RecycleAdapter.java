@@ -7,7 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import grmorato.testecedro.Data.Pais;
+import grmorato.testecedro.Models.Pais;
 import grmorato.testecedro.Library.LibMobile;
 import grmorato.testecedro.R;
 
@@ -31,7 +31,7 @@ public class RecycleAdapter extends RecyclerView.Adapter<ItemHolderAdapter>
 
     @Override
     public ItemHolderAdapter onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view =LayoutInflater.from(parent.getContext()).inflate(R.layout.itemlist_countries, parent, false);
+        View view =LayoutInflater.from(parent.getContext()).inflate(R.layout.itemlist_favorites, parent, false);
         return new ItemHolderAdapter(view);
     }
 

@@ -5,13 +5,10 @@ import android.content.Intent;
 import android.util.JsonReader;
 
 import java.io.IOException;
-import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 
 import grmorato.testecedro.Activities.DetailActivity;
-import grmorato.testecedro.Data.Pais;
-import grmorato.testecedro.Library.LibMobile;
+import grmorato.testecedro.Models.Pais;
 import grmorato.testecedro.Library.LibServiceRest;
 
 /**
@@ -20,11 +17,7 @@ import grmorato.testecedro.Library.LibServiceRest;
 
 public class CtrlCountry
 {
-    public ArrayList<Pais> GetListDataBase()
-    {
-        ArrayList<Pais> listPais = new ArrayList<>();
-        return listPais;
-    }
+
     public ArrayList<Pais> GetListRestWebService() {
         try {
             ArrayList<Pais> listPais = new ArrayList<>();

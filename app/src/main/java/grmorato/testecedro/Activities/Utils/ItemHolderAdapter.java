@@ -23,8 +23,8 @@ public class ItemHolderAdapter extends RecyclerView.ViewHolder
         super(view);
         if(view != null)
         {
-            setTexto((TextView) view.findViewById(R.id.textViewCountryName));
-            setWebView((WebView) view.findViewById(R.id.webViewCountryFlag));
+            setTexto((TextView) view.findViewById(R.id.textViewFavName));
+            setWebView((WebView) view.findViewById(R.id.webViewFavFlag));
         }
     }
 

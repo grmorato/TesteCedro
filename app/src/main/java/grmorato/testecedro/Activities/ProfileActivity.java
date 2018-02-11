@@ -5,13 +5,12 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.TextView;
 
 import grmorato.testecedro.Controllers.CtrlProfile;
-import grmorato.testecedro.Data.UserProfile;
+import grmorato.testecedro.Models.UserProfile;
 import grmorato.testecedro.R;
 
 

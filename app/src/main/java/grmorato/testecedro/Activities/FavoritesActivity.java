@@ -1,6 +1,5 @@
 package grmorato.testecedro.Activities;
 
-import android.os.AsyncTask;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -14,7 +13,8 @@ import java.util.ArrayList;
 
 import grmorato.testecedro.Activities.Utils.RecycleAdapter;
 import grmorato.testecedro.Controllers.CtrlCountry;
-import grmorato.testecedro.Data.Pais;
+import grmorato.testecedro.Controllers.CtrlFavorites;
+import grmorato.testecedro.Models.Pais;
 import grmorato.testecedro.R;
 
 public class FavoritesActivity extends Fragment implements SwipeRefreshLayout.OnRefreshListener
@@ -23,11 +23,8 @@ public class FavoritesActivity extends Fragment implements SwipeRefreshLayout.On
     private RecyclerView listView;
     private LinearLayoutManager mLayoutManager;
     private SwipeRefreshLayout swipeRefresh;
-    private CtrlCountry ctrlPaises;
+    private CtrlFavorites ctrlFavorites;
 
-    public FavoritesActivity() {
-        this.ctrlPaises = new CtrlCountry();
-    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
@@ -39,6 +36,7 @@ public class FavoritesActivity extends Fragment implements SwipeRefreshLayout.On
 
     private void Init(View view)
     {
+        this.ctrlFavorites = new CtrlFavorites(this.getContext());
         listView = view.findViewById(R.id.ListViewFavoritos);
         listView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(getContext());
@@ -61,12 +59,12 @@ public class FavoritesActivity extends Fragment implements SwipeRefreshLayout.On
 
     private void LoadValues()
     {
-        ArrayList<Pais> listPaises = ctrlPaises.GetListDataBase();
+        ArrayList<Pais> listPaises = ctrlFavorites.GetListPaises();
         if(listPaises != null) {
             RecycleAdapter recycleAdapter = new RecycleAdapter(getContext(), listPaises);
             listView.setAdapter(recycleAdapter);
-            swipeRefresh.setRefreshing(false);
         }
+        swipeRefresh.setRefreshing(false);
     }
 
     @Override
