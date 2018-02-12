@@ -6,10 +6,7 @@ import android.util.Log;
 import java.util.ArrayList;
 
 import grmorato.testecedro.Data.RepositoryFavorites;
-import grmorato.testecedro.Data.RepositoryProfile;
-import grmorato.testecedro.Library.LibFacebookService;
 import grmorato.testecedro.Models.Pais;
-import grmorato.testecedro.Models.UserProfile;
 
 /**
  * Created by grmorato on 11/02/2018.
@@ -42,6 +39,19 @@ public class CtrlFavorites {
         }
     }
 
+    public void DeleteVariosPais(ArrayList<Pais> listPais)
+    {
+        try
+        {
+            for(Pais pais : listPais)
+            {
+                if(pais.isSelect())
+                    DeletePais(pais.getAlpha2Code());
+            }
+        } catch (Exception ex) {
+            Log.d("Error", ex.getMessage());
+        }
+    }
     public void DeletePais(String codPais) {
         try {
             repository.Delete(codPais);

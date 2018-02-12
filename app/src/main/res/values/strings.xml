@@ -104,5 +104,9 @@
     <string name="Yes">Yes</string>
     <string name="No">No</string>
     <string name="MsgSalvar">Do you want to save that visited this country?</string>
+    <string name="selectall">Select All</string>
+    <string name="deselectall">Deselect All</string>
+    <string name="excluir">Delete</string>
+    <string name="msgDelete">Do you really want to delete the records?</string>
 
 </resources>

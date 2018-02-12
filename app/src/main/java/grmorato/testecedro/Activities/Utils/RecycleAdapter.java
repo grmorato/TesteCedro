@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CompoundButton;
 
 import grmorato.testecedro.Controllers.CtrlCountry;
 import grmorato.testecedro.Library.OnItemClickListener;
@@ -42,18 +43,29 @@ public class RecycleAdapter extends RecyclerView.Adapter<ItemHolderAdapter> {
 
     @Override
     public void onBindViewHolder(ItemHolderAdapter holder, int position) {
-        try {
+        try
+        {
+            //busca e trata os dados
             final Pais item = listDados.get(position);
             String msgCode = item.getAlpha2Code() == null ? " " : item.getAlpha2Code();
             String msgName = item.getName() == null ? " " : item.getName();
-            if (item.getFlag() != null) {
-                holder.getWebView().loadData(LibMobile.GetImageUrl(item.getFlag()), "text/html", null);
-            }
+
+            //Seta os dados nos componentes
+            holder.getWebView().loadData(LibMobile.GetImageUrl(item.getFlag()), "text/html", null);
             holder.getTexto().setText(msgCode + " - " + msgName);
+
+            //Seta os eventos específicos dos componentes
             holder.itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     onItemClickListener.onItemClick(item);
+                }
+            });
+
+            holder.getCheck().setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+                @Override
+                public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                    item.setSelect(isChecked);
                 }
             });
 

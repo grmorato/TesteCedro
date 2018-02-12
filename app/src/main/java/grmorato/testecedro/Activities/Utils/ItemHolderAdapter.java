@@ -27,7 +27,7 @@ public class ItemHolderAdapter extends RecyclerView.ViewHolder
         {
             setTexto((TextView) view.findViewById(R.id.textViewFavName));
             setWebView((WebView) view.findViewById(R.id.webViewFavFlag));
-            setCheck((CheckBox) view.findViewById(R.id.checkedDetail));
+            setCheck((CheckBox) view.findViewById(R.id.CheckCountry));
         }
     }
 

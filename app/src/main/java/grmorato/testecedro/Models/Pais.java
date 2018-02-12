@@ -10,6 +10,7 @@ import java.io.Serializable;
 
 public class Pais implements Serializable
 {
+    private boolean select;
     private String name;
     private String flag;
     private String alpha2Code;
@@ -73,5 +74,13 @@ public class Pais implements Serializable
 
     public void setDateVisit(String dateVisit) {
         DateVisit = dateVisit;
+    }
+
+    public boolean isSelect() {
+        return select;
+    }
+
+    public void setSelect(boolean select) {
+        this.select = select;
     }
 }

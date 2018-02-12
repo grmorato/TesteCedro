@@ -7,4 +7,8 @@
     <string name="Yes">Sim</string>
     <string name="No">Não</string>
     <string name="MsgSalvar">Deseja salvar que visitou esse país?</string>
+    <string name="selectall">Selecionar Todos</string>
+    <string name="deselectall">Desselecionar Todos</string>
+    <string name="excluir">Excluir</string>
+    <string name="msgDelete">Deseja realmente excluir os registros ?</string>
 </resources>
