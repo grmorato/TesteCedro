@@ -11,4 +11,5 @@
     <string name="deselectall">Desselecionar Todos</string>
     <string name="excluir">Excluir</string>
     <string name="msgDelete">Deseja realmente excluir os registros ?</string>
+    <string name="semConexao">Olá ! Para prosseguir você precisa de conexão com internet.</string>
 </resources>

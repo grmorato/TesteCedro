@@ -24,9 +24,9 @@ public class LibServiceRest
 {
 
     public static HttpsURLConnection GetConnection(String url) throws IOException {
-      URL urlConnection = new URL(url);
-      HttpsURLConnection myConnection = (HttpsURLConnection) urlConnection.openConnection();
-      return myConnection;
+        URL urlConnection = new URL(url);
+        HttpsURLConnection myConnection = (HttpsURLConnection) urlConnection.openConnection();
+        return myConnection;
     }
 
     public static JsonReader GetJsonRespose(String url)
@@ -47,40 +47,32 @@ public class LibServiceRest
         }
     }
 
-    public static Bitmap GetBitmapUrl(String url)
+    public static byte[] GetImageUrl(String url)
     {
         try
         {
+
             URL urlConnection = new URL(url);
             HttpURLConnection conn = (HttpURLConnection) urlConnection.openConnection();
+            conn.setFollowRedirects(true);
             conn.setDoInput(true);
             conn.connect();
-            InputStream input = conn.getInputStream();
-            byte[] bytes = ConvertStreamToByteArray(input);
-            Bitmap bmp = BitmapFactory.decodeStream(input);
-            return bmp;
+            int responseCode = conn.getResponseCode();
+            if(responseCode == HttpURLConnection.HTTP_OK) {
+                InputStream input = conn.getInputStream();
+                byte[] bytes = LibMobile.ConvertStreamToByteArray(input);
+                input.close();
+                return bytes;
+
+            }
+            conn.disconnect();
+            return null;
         } catch (IOException e)
         {
             e.printStackTrace();
             Log.d("Error",e.getMessage());
             return  null;
         }
-    }
-
-    public static byte[] ConvertStreamToByteArray(InputStream inputStream) throws IOException {
-        ByteArrayOutputStream buffer = new ByteArrayOutputStream();
-
-        int nRead;
-        byte[] data = new byte[16384];
-
-        while ((nRead = inputStream.read(data, 0, data.length)) != -1) {
-            buffer.write(data, 0, nRead);
-        }
-
-        buffer.flush();
-
-        return buffer.toByteArray();
-
     }
 
 

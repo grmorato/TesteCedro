@@ -25,6 +25,7 @@ import com.facebook.FacebookException;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
@@ -87,6 +88,7 @@ public class LibMobile {
     public static void AlertMessage(int resourceMessage, final Context context) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setMessage(resourceMessage);
+        builder.setPositiveButton("OK",null);
         Dialog alerta = builder.create();
         alerta.show();
     }
@@ -188,6 +190,29 @@ public class LibMobile {
     public static String StringDateFormat(Date date) {
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", new Locale("pt", "BR"));
         return formato.format(date);
+    }
+
+    public static  Bitmap ConvertByteArrayToBitmap(byte[] bytes)
+    {
+        Bitmap bmp = BitmapFactory.decodeByteArray(bytes,0,bytes.length);
+        return bmp;
+    }
+
+
+    public static byte[] ConvertStreamToByteArray(InputStream inputStream) throws IOException {
+        ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+
+        int nRead;
+        byte[] data = new byte[16384];
+
+        while ((nRead = inputStream.read(data, 0, data.length)) != -1) {
+            buffer.write(data, 0, nRead);
+        }
+
+        buffer.flush();
+
+        return buffer.toByteArray();
+
     }
 
 }

@@ -108,5 +108,6 @@
     <string name="deselectall">Deselect All</string>
     <string name="excluir">Delete</string>
     <string name="msgDelete">Do you really want to delete the records?</string>
+    <string name="semConexao">Hello ! To proceed you need internet connection.</string>
 
 </resources>

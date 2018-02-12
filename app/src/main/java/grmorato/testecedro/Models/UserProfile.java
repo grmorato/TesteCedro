@@ -9,7 +9,7 @@ public class UserProfile
 {
     private String name;
     private String email;
-    private String image;
+    private byte[] image;
 
     public String getName() {
         return name;
@@ -27,11 +27,11 @@ public class UserProfile
         this.email = email;
     }
 
-    public String getImage() {
+    public byte[] getImage() {
         return image;
     }
 
-    public void setImage(String image) {
+    public void setImage(byte[] image) {
         this.image = image;
     }
 }

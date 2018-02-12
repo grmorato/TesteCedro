@@ -45,6 +45,11 @@ public class Splash extends AppCompatActivity
     protected void onStart() {
         super.onStart();
         final Context context = this;
+        if(!LibMobile.VerificarConexao(this))
+        {
+            LibMobile.AlertMessage(R.string.semConexao,this);
+            return;
+        }
         loginButton.setVisibility(AccessToken.getCurrentAccessToken() != null ? View.GONE: View.VISIBLE);
         if(AccessToken.getCurrentAccessToken() != null)
         {
@@ -61,7 +66,6 @@ public class Splash extends AppCompatActivity
                     LibMobile.StartActivity(context, MainActivity.class);
                 }
             }.start();
-
         }
     }
 

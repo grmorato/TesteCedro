@@ -19,7 +19,8 @@ public class CtrlCountry
 {
 
     public ArrayList<Pais> GetListRestWebService() {
-        try {
+        try
+        {
             ArrayList<Pais> listPais = new ArrayList<>();
             String url = "https://restcountries.eu/rest/v2/all?fields=name;capital;alpha2Code;flag;population;area";
             JsonReader jsonReader = LibServiceRest.GetJsonRespose(url);

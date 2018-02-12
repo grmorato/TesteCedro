@@ -9,10 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import grmorato.testecedro.Controllers.CtrlProfile;
 import grmorato.testecedro.Library.LibFacebookService;
+import grmorato.testecedro.Library.LibMobile;
 import grmorato.testecedro.Library.LibServiceRest;
 import grmorato.testecedro.Models.UserProfile;
 import grmorato.testecedro.R;
@@ -36,20 +38,9 @@ public class ProfileActivity extends Fragment {
          if(userProfile != null) {
              ((TextView) view.findViewById(R.id.textViewName)).setText(userProfile.getName());
              ((TextView) view.findViewById(R.id.textViewEmail)).setText(userProfile.getEmail());
-             WebView webView = view.findViewById(R.id.webViewProfile);
-             webView.setWebViewClient(new WebViewClient());
-             webView.loadUrl(userProfile.getImage());
-             AsyncTask.execute(new Runnable() {
-                 @Override
-                 public void run()
-                 {
-                     Bitmap bit = LibServiceRest.GetBitmapUrl(userProfile.getImage());
-                     if(bit != null)
-                     {
-                         int count = bit.getByteCount();
-                     }
-                 }
-             });
+             final ImageView imageView = view.findViewById(R.id.imageViewProfile);
+             final Bitmap bit = LibMobile.ConvertByteArrayToBitmap(userProfile.getImage());
+             imageView.setImageBitmap(bit);
 
          }
     }

@@ -21,12 +21,12 @@ public class RepositoryProfile
         dataAccess = new DataAccess(context);
     }
 
-    public void InsetProfile(String name, String email, String imagem)
+    public void InsetProfile(String name, String email, byte[] imagem)
     {
         ArrayList<ColumnDataBase> listColumn = new ArrayList<>();
         listColumn.add(new ColumnDataBase("name", LibEnuns.DataBaseType.String,name));
         listColumn.add(new ColumnDataBase("email", LibEnuns.DataBaseType.String,email));
-        listColumn.add(new ColumnDataBase("image", LibEnuns.DataBaseType.String,imagem));
+        listColumn.add(new ColumnDataBase("image", LibEnuns.DataBaseType.ByteArray,imagem));
         long result =dataAccess.Insert(tableName,listColumn);
     }
 
@@ -40,7 +40,7 @@ public class RepositoryProfile
         ArrayList<ColumnDataBase> listColumn = new ArrayList<>();
         listColumn.add(new ColumnDataBase("name", LibEnuns.DataBaseType.String,name));
         listColumn.add(new ColumnDataBase("email", LibEnuns.DataBaseType.String,email));
-        listColumn.add(new ColumnDataBase("image", LibEnuns.DataBaseType.String,imagem));
+        listColumn.add(new ColumnDataBase("image", LibEnuns.DataBaseType.ByteArray,imagem));
         int result = dataAccess.Update(tableName,listColumn,"email = ?",new String[]{email});
     }
 
@@ -52,7 +52,7 @@ public class RepositoryProfile
         {
             profile = new UserProfile();
             String name = cursor.getString(cursor.getColumnIndex("name"));
-            String image = cursor.getString(cursor.getColumnIndex("image"));
+            byte[] image = cursor.getBlob(cursor.getColumnIndex("image"));
             profile.setEmail(email);
             profile.setName(name);
             profile.setImage(image);

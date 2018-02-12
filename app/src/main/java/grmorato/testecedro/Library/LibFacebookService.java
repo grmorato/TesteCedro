@@ -1,5 +1,7 @@
 package grmorato.testecedro.Library;
 
+import android.graphics.Bitmap;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 
@@ -24,8 +26,7 @@ import grmorato.testecedro.Models.UserProfile;
  * Created by grmorato on 10/02/2018.
  */
 
-public class LibFacebookService
-{
+public class LibFacebookService {
 
     public static UserProfile userProfile;
 
@@ -39,8 +40,7 @@ public class LibFacebookService
 
         loginButton.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override
-            public void onSuccess(LoginResult loginResult)
-            {
+            public void onSuccess(LoginResult loginResult) {
                 GetEmailProfile(func);
             }
 
@@ -87,18 +87,30 @@ public class LibFacebookService
             @Override
             public void onCompleted(JSONObject json, GraphResponse response) {
                 try {
-                    if (response.getError() == null)
-                    {
+                    if (response.getError() == null) {
                         String id = json.optString("id");
                         String name = json.optString("name");
                         String userEmail = json.optString("email");
-                        String urlImage = "http://graph.facebook.com/" + id + "/picture?type=large";
+                        final String urlImage = "https://graph.facebook.com/" + id + "/picture?type=large";
                         userProfile = new UserProfile();
                         userProfile.setName(name);
                         userProfile.setEmail(userEmail);
-                        userProfile.setImage(urlImage);
-                        if (func != null)
-                            func.call();
+                        AsyncTask.execute(new Runnable() {
+                            @Override
+                            public void run() {
+                                try {
+                                    byte[] bytes = LibServiceRest.GetImageUrl(urlImage);
+                                    userProfile.setImage(bytes);
+                                    if (func != null)
+                                        func.call();
+                                } catch (Exception e) {
+                                    String msg = e.getMessage();
+                                    if (msg != null && !msg.equalsIgnoreCase(""))
+                                        Log.d("Error", msg);
+                                }
+                            }
+                        });
+
 
                     }
 
