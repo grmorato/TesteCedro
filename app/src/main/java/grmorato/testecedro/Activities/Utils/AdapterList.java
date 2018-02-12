@@ -88,6 +88,8 @@ public class AdapterList extends ArrayAdapter {
                 Pais paisAux = new CtrlFavorites(getContext()).GetPais(pais.getAlpha2Code());
                 if (paisAux != null)
                     itemAdapter.getSinal().setBackgroundColor(Color.GREEN);
+                else
+                    itemAdapter.getSinal().setBackgroundColor(Color.LTGRAY);
             }
             return convertView;
         } catch (Exception ex) {

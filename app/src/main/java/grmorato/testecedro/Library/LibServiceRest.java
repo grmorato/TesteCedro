@@ -51,16 +51,36 @@ public class LibServiceRest
     {
         try
         {
-            HttpsURLConnection conn = LibServiceRest.GetConnection(url);
+            URL urlConnection = new URL(url);
+            HttpURLConnection conn = (HttpURLConnection) urlConnection.openConnection();
             conn.setDoInput(true);
             conn.connect();
             InputStream input = conn.getInputStream();
+            byte[] bytes = ConvertStreamToByteArray(input);
             Bitmap bmp = BitmapFactory.decodeStream(input);
             return bmp;
         } catch (IOException e)
         {
-            return null;
+            e.printStackTrace();
+            Log.d("Error",e.getMessage());
+            return  null;
         }
+    }
+
+    public static byte[] ConvertStreamToByteArray(InputStream inputStream) throws IOException {
+        ByteArrayOutputStream buffer = new ByteArrayOutputStream();
+
+        int nRead;
+        byte[] data = new byte[16384];
+
+        while ((nRead = inputStream.read(data, 0, data.length)) != -1) {
+            buffer.write(data, 0, nRead);
+        }
+
+        buffer.flush();
+
+        return buffer.toByteArray();
+
     }
 
 

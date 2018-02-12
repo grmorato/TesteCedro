@@ -1,6 +1,7 @@
 package grmorato.testecedro.Activities;
 
 import android.graphics.Bitmap;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -31,14 +32,24 @@ public class ProfileActivity extends Fragment {
     private void LoadValues(View view)
     {
          CtrlProfile ctrlProfile = new CtrlProfile(getContext());
-         UserProfile userProfile = ctrlProfile.GetProfile();
+         final UserProfile userProfile = ctrlProfile.GetProfile();
          if(userProfile != null) {
              ((TextView) view.findViewById(R.id.textViewName)).setText(userProfile.getName());
              ((TextView) view.findViewById(R.id.textViewEmail)).setText(userProfile.getEmail());
              WebView webView = view.findViewById(R.id.webViewProfile);
              webView.setWebViewClient(new WebViewClient());
              webView.loadUrl(userProfile.getImage());
-             Bitmap bit = LibServiceRest.GetBitmapUrl(userProfile.getImage());
+             AsyncTask.execute(new Runnable() {
+                 @Override
+                 public void run()
+                 {
+                     Bitmap bit = LibServiceRest.GetBitmapUrl(userProfile.getImage());
+                     if(bit != null)
+                     {
+                         int count = bit.getByteCount();
+                     }
+                 }
+             });
 
          }
     }
