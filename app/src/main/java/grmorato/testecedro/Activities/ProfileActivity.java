@@ -1,5 +1,6 @@
 package grmorato.testecedro.Activities;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,6 +11,8 @@ import android.webkit.WebViewClient;
 import android.widget.TextView;
 
 import grmorato.testecedro.Controllers.CtrlProfile;
+import grmorato.testecedro.Library.LibFacebookService;
+import grmorato.testecedro.Library.LibServiceRest;
 import grmorato.testecedro.Models.UserProfile;
 import grmorato.testecedro.R;
 
@@ -35,6 +38,8 @@ public class ProfileActivity extends Fragment {
              WebView webView = view.findViewById(R.id.webViewProfile);
              webView.setWebViewClient(new WebViewClient());
              webView.loadUrl(userProfile.getImage());
+             Bitmap bit = LibServiceRest.GetBitmapUrl(userProfile.getImage());
+
          }
     }
 }
