@@ -53,11 +53,16 @@ public class CountriesActivity extends Fragment implements SwipeRefreshLayout.On
 
     private void LoadValues()
     {
-        AsyncTaskLoadWsCountries asyncTaskLoad = new AsyncTaskLoadWsCountries();
-        asyncTaskLoad.setContext(getContext());
-        asyncTaskLoad.setGridview(gridview);
-        asyncTaskLoad.setSwipeRefresh(swipeRefresh);
-        asyncTaskLoad.execute();
+        if(LibMobile.CheckConMsg(getContext()))
+        {
+            AsyncTaskLoadWsCountries asyncTaskLoad = new AsyncTaskLoadWsCountries();
+            asyncTaskLoad.setContext(getContext());
+            asyncTaskLoad.setGridview(gridview);
+            asyncTaskLoad.setSwipeRefresh(swipeRefresh);
+            asyncTaskLoad.execute();
+            return;
+        }
+        swipeRefresh.setRefreshing(false);
     }
 
     @Override

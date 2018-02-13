@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import grmorato.testecedro.Activities.DetailActivity;
+import grmorato.testecedro.Library.LibMobile;
 import grmorato.testecedro.Models.Pais;
 import grmorato.testecedro.Library.LibServiceRest;
 
@@ -26,11 +27,11 @@ public class CtrlCountry
             JsonReader jsonReader = LibServiceRest.GetJsonRespose(url);
             jsonReader.beginArray();
 
-            while (jsonReader.hasNext())
-            {
+            while (jsonReader.hasNext()) {
                 listPais.add(GetPais(jsonReader));
             }
             jsonReader.endArray();
+
             return listPais;
         } catch (IOException e) {
             return null;

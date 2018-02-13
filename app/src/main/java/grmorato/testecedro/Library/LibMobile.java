@@ -12,6 +12,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.util.Base64;
 import android.util.Log;
 import android.widget.DatePicker;
 import android.widget.TextView;
@@ -85,10 +86,23 @@ public class LibMobile {
 
     }
 
-    public static void AlertMessage(int resourceMessage, final Context context) {
-        AlertDialog.Builder builder = new AlertDialog.Builder(context);
+    public static void AlertMessage(int resourceMessage, final Context context, final Callable func) {
+        final AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setMessage(resourceMessage);
-        builder.setPositiveButton("OK",null);
+        builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which)
+            {
+                try
+                {
+                    if(func != null)
+                        func.call();
+                }catch (Exception ex)
+                {
+                    Log.d("Error",ex.getMessage());
+                }
+            }
+        });
         Dialog alerta = builder.create();
         alerta.show();
     }
@@ -214,5 +228,16 @@ public class LibMobile {
         return buffer.toByteArray();
 
     }
+
+    public static Boolean CheckConMsg(Context context)
+    {
+        if(!LibMobile.VerificarConexao(context))
+        {
+            LibMobile.AlertMessage(R.string.semConexao, context, null);
+            return false;
+        }
+        return true;
+    }
+
 
 }

@@ -40,19 +40,19 @@ public class ItemHolderAdapter extends RecyclerView.ViewHolder
         this.texto = texto;
     }
 
-    public WebView getWebView() {
-        return webView;
-    }
-
-    public void setWebView(WebView webView) {
-        this.webView = webView;
-    }
-
     public CheckBox getCheck() {
         return check;
     }
 
     public void setCheck(CheckBox check) {
         this.check = check;
+    }
+
+    public WebView getWebView() {
+        return webView;
+    }
+
+    public void setWebView(WebView webView) {
+        this.webView = webView;
     }
 }

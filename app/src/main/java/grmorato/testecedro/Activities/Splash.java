@@ -42,14 +42,22 @@ public class Splash extends AppCompatActivity
     }
 
     @Override
-    protected void onStart() {
+    protected void onStart()
+    {
         super.onStart();
+        CheckStartApp();
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        callbackManager.onActivityResult(requestCode, resultCode, data);
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    public void StartApp()
+    {
         final Context context = this;
-        if(!LibMobile.VerificarConexao(this))
-        {
-            LibMobile.AlertMessage(R.string.semConexao,this);
-            return;
-        }
         loginButton.setVisibility(AccessToken.getCurrentAccessToken() != null ? View.GONE: View.VISIBLE);
         if(AccessToken.getCurrentAccessToken() != null)
         {
@@ -69,11 +77,21 @@ public class Splash extends AppCompatActivity
         }
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        callbackManager.onActivityResult(requestCode, resultCode, data);
-        super.onActivityResult(requestCode, resultCode, data);
+    private void CheckStartApp()
+    {
+        if(!LibMobile.VerificarConexao(this))
+        {
+            LibMobile.AlertMessage(R.string.semConexao, this, new Callable() {
+                @Override
+                public Object call() throws Exception
+                {
+                    CheckStartApp();
+                    return null;
+                }
+            });
+            return;
+        }
+        StartApp();
     }
-
 
 }

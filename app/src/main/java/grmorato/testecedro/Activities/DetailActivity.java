@@ -1,6 +1,7 @@
 package grmorato.testecedro.Activities;
 
 import android.app.DatePickerDialog;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
@@ -16,6 +17,7 @@ import java.util.concurrent.Callable;
 
 import grmorato.testecedro.Controllers.CtrlFavorites;
 import grmorato.testecedro.Library.LibMobile;
+import grmorato.testecedro.Library.LibServiceRest;
 import grmorato.testecedro.Models.Pais;
 import grmorato.testecedro.R;
 
@@ -117,8 +119,14 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
                 @Override
                 public Object call() throws Exception
                 {
-                    pais.setDateVisit(textDate.getText().toString());
-                    ctrlFavorites.SalvarFavorite(pais);
+                    AsyncTask.execute(new Runnable() {
+                        @Override
+                        public void run()
+                        {
+                            SetSavePais(pais);
+                        }
+                    });
+
                     finish();
                     return null;
                 }
@@ -135,6 +143,12 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
             return;
         }
         finish();
+    }
+
+    private void SetSavePais(Pais pais)
+    {
+        pais.setDateVisit(textDate.getText().toString());
+        ctrlFavorites.SalvarFavorite(pais);
     }
 
 }
