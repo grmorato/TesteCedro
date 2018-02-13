@@ -17,10 +17,15 @@ import grmorato.testecedro.Library.LibFacebookService;
 import grmorato.testecedro.Library.LibMobile;
 import grmorato.testecedro.R;
 
+//Activity de splash onde tem duas funções de splash depois que o usuário já logou com a conta do facebook.
+//E de login esperando a confirmação do usuário para logar com sua conta do facebook
 public class Splash extends AppCompatActivity
 {
 
+    //Callbackmanager responsável por manipular as requições da api do facebook
     public CallbackManager callbackManager;
+    //Botão de login da api do facebook onde já possuí funções para facilitar a requisição
+    // E busca pelo token do usuário ao logar
     private LoginButton loginButton;
 
     @Override
@@ -28,7 +33,10 @@ public class Splash extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
         final Context context = this;
+        //Busca o botão de login do facebook
         loginButton = findViewById(R.id.login_button);
+        //Passa o button no metodo que manipula os resultados do login do facebook
+        // E também passa a função como parâmetro responsável por fazer o save dos dados do usuário e start na activity main
         callbackManager = LibFacebookService.FacebookConfig(loginButton, new Callable() {
             @Override
             public Object call() throws Exception
@@ -55,6 +63,8 @@ public class Splash extends AppCompatActivity
         super.onActivityResult(requestCode, resultCode, data);
     }
 
+    //Metodo responsável por controlar a visibilidade do botão do facebook caso já esteja logado o deixa invisivel
+    //E também verifica se o mesmo já está logado caso sim faz a função de splash
     public void StartApp()
     {
         final Context context = this;
@@ -77,6 +87,7 @@ public class Splash extends AppCompatActivity
         }
     }
 
+    //Metodo responsável por verificar se tem conexão com a internet caso não exibe uma mensagem e mantém na mesma até que tenha conexão
     private void CheckStartApp()
     {
         if(!LibMobile.VerificarConexao(this))

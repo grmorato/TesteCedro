@@ -20,6 +20,7 @@ import grmorato.testecedro.Models.UserProfile;
 import grmorato.testecedro.R;
 
 
+//Fragment responsável por mostrar os dados do facebook do usuário salvo no banco de dados
 public class ProfileActivity extends Fragment {
 
 

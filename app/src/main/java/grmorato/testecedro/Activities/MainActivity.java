@@ -6,8 +6,6 @@ import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-
-import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.login.widget.LoginButton;
 
