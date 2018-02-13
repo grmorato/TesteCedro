@@ -24,14 +24,20 @@ import grmorato.testecedro.Library.LibServiceRest;
 import grmorato.testecedro.Models.Pais;
 import grmorato.testecedro.R;
 
+//Activity responsável por manipular os eventos e ações da tela  de detalhes do país.
+//Podendo salvar a data e assim informar que visitou o mesmo
 public class DetailActivity extends AppCompatActivity implements View.OnClickListener {
 
+    //Classe de controle responsável pela regra de negócio
     private CtrlFavorites ctrlFavorites;
     private Toolbar toolbar;
     private Calendar calendar;
     private EditText textDate;
+    //Varíavel para saber se foi realizado a edição da data. E assim saber se pode salvar ou não
     private boolean isModificou;
+    //CheckedTextView somente para mostrar se esse país já foi visitado ou não
     private CheckedTextView checkText;
+    //Classe de país com os dados do mesmo
     private Pais pais;
 
     @Override
@@ -42,12 +48,15 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
         LoadValues();
     }
 
+    //Metodo para carregar os componentes com os dados do país
     private void LoadValues() {
         pais = (Pais) getIntent().getSerializableExtra("Pais");
         ((TextView) findViewById(R.id.textViewDetailName)).setText(pais.getName());
         ((TextView) findViewById(R.id.textViewDetailCapital)).setText(pais.getCapital());
         ((TextView) findViewById(R.id.textViewDetailArea)).setText(pais.getArea());
         ((TextView) findViewById(R.id.textViewDetailPopulacao)).setText(pais.getPopulation());
+        //Foi utilizado o webview devido o motivo da imagem da bandeira ser no formato svg.
+        // Cujo o bitmap não trabalha não podendo assim alimentar o imageview
         ((WebView) findViewById(R.id.webViewDetailFlag)).loadData(LibMobile.GetImageUrl(pais.getFlag()), "text/html", null);
         Pais favorite = ctrlFavorites.GetPais(pais.getAlpha2Code());
         checkText.setChecked(favorite != null);
@@ -57,6 +66,7 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
     }
 
 
+    //Metodo responsável por iniciar os componentes e configurar os mesmos
     private void Init() {
         toolbar = findViewById(R.id.toolbarDetail);
         setSupportActionBar(toolbar);
@@ -65,10 +75,10 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
         findViewById(R.id.buttonTime).setOnClickListener(this);
         checkText = findViewById(R.id.checkedDetail);
         textDate = findViewById(R.id.editTextDateTime);
+        //Instancica o objeto calendar para utilizar na data
         calendar = Calendar.getInstance();
         ctrlFavorites = new CtrlFavorites(this);
     }
-
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
@@ -88,6 +98,7 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
     @Override
     public void onClick(View v)
     {
+        //Cria função para ser passada por parâmetro e ser chamada direto no eventos de data para alimentar o text
         Callable func = new Callable(){
             @Override
             public Object call() throws Exception
@@ -97,16 +108,19 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
             }
         };
 
+        //Chama o datetimePicker para retornar a data escolhida pelo usuário
         if (v.getId() == R.id.buttonDate)
         {
             LibMobile.DateTimePicker(this, true, calendar,func);
         }
+        //Chama o datetimePicker para retornar a hora escolhida pelo usuário
         else if (v.getId() == R.id.buttonTime)
         {
             LibMobile.DateTimePicker(this, false, calendar,func);
         }
     }
 
+    //Atualiza o text do componente de data
     private void UpdateTextDate()
     {
         Date date = calendar.getTime();
@@ -117,8 +131,11 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
 
     private void BackPress()
     {
+        //Verifica se foi realizada alguma alteração para ver se pode ser realizado um save no banco
         if(isModificou)
         {
+            //Cria função para ser chamado no yes do dialogQuestion para salvar o banco.
+            // E também retornar o intent informando que pode atualizar a tela
             Callable callableYes = new Callable() {
                 @Override
                 public Object call() throws Exception
@@ -137,6 +154,7 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
                     return null;
                 }
             };
+            //Cria função para só fechar a tela caso o usuário não queria salvar
             Callable callableNo = new Callable() {
                 @Override
                 public Object call() throws Exception
@@ -145,12 +163,14 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
                     return null;
                 }
             };
+            //Chama o dialog com o questionamento se pode salvar ou não
             LibMobile.AlertMessageQuestion(R.string.MsgSalvar, this, callableYes,callableNo);
             return;
         }
         finish();
     }
 
+    //Realiza o save no banco com o objeto de pais
     private void SetSavePais(Pais pais)
     {
         pais.setDateVisit(textDate.getText().toString());

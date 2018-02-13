@@ -22,6 +22,7 @@ import java.util.Date;
  * Created by guilherme.morato on 11/11/2016.
  */
 
+//Adapter criado para alimentar o recyclerview e manipular os dados nas rows
 public class RecycleAdapter extends RecyclerView.Adapter<ItemHolderAdapter> {
 
     private ArrayList<Pais> listDados;
@@ -52,6 +53,8 @@ public class RecycleAdapter extends RecyclerView.Adapter<ItemHolderAdapter> {
             String msgName = item.getName() == null ? " " : item.getName();
 
             //Seta os dados nos componentes
+            //Foi utilizado o webview devido o motivo da imagem da bandeira ser no formato svg.
+            // Cujo o bitmap não trabalha não podendo assim alimentar o imageview
             holder.getWebView().loadData(LibMobile.GetImageUrl(item.getFlag()), "text/html", null);
             holder.getTexto().setText(msgCode + " - " + msgName);
             holder.getCheck().setChecked(item.isSelect());

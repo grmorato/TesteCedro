@@ -10,9 +10,12 @@ import java.util.ArrayList;
  * Created by grmorato on 07/02/2018.
  */
 
+//Classe de pager utilizada para manipular os fragments do tabpage
 public class Pager extends FragmentStatePagerAdapter
 {
+    //Variável para armazenar o total de tabs
     private final int countTabs;
+    //Criado o arraylist para poder manipular as tabs deixando a utilização do mesmo mais genérico
     private ArrayList<Fragment> listFragment;
 
     public Pager(FragmentManager fm, int countTabs) {

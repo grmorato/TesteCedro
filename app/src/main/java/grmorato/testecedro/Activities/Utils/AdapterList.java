@@ -45,7 +45,7 @@ public class AdapterList extends ArrayAdapter {
             //Cria uma classe adapter só para armazenar os objetos de text para não precisar ficar buscando eles toda hora
             ItemListAdapter itemAdapter = new ItemListAdapter();
 
-            //se o convertView estiver nulo cria o mesmo e cria os objetos de text no itemAdapter e set no convertView
+            //se o convertView estiver nulo cria o mesmo e cria os componentes no itemAdapter e seta o itemadapter no convertView
             if (convertView == null)
             {
                 convertView = LayoutInflater.from(this.getContext()).inflate(R.layout.itemlist_countries, parent, false);
@@ -59,14 +59,18 @@ public class AdapterList extends ArrayAdapter {
                 itemAdapter = (ItemListAdapter) convertView.getTag();
             }
 
+            //busca o pais corrente
             final Pais pais = (Pais) getItem(position);
             if(pais != null)
             {
+                //busca as informações para setar no itemadapter
                 String msgCode = pais.getAlpha2Code() == null ? " " : pais.getAlpha2Code();
                 String msgName = pais.getName() == null ? " " : pais.getName();
                 itemAdapter.getTexto().setText(msgCode + " - " + msgName);
 
                 // Configura o webview para chamar a tela de detalhe
+                //Foi utilizado o webview devido o motivo da imagem da bandeira ser no formato svg.
+                // Cujo o bitmap não trabalha não podendo assim alimentar o imageview
                 itemAdapter.getWebView().loadData(LibMobile.GetImageUrl(pais.getFlag()), "text/html", null);
                 itemAdapter.getWebView().setOnTouchListener(new View.OnTouchListener() {
                     @Override
@@ -77,7 +81,7 @@ public class AdapterList extends ArrayAdapter {
                 });
 
 
-                //Eventos de click direto no text  chamar a tela de detalhes
+                //Eventos de click direto no text  chamar a tela de detalhe
                 itemAdapter.getTexto().setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
@@ -85,6 +89,7 @@ public class AdapterList extends ArrayAdapter {
                     }
                 });
 
+                //Busca o pais no banco pelo codigo do mesmo para saber se existe e mudar a cor do linear layout
                 Pais paisAux = new CtrlFavorites(getContext()).GetPais(pais.getAlpha2Code());
                 if (paisAux != null)
                     itemAdapter.getSinal().setBackgroundColor(Color.GREEN);
@@ -110,6 +115,7 @@ public class AdapterList extends ArrayAdapter {
         }
     }
 
+    //Metodo para chamar via a tela de detalhe pelo método do controler
     private void StartDetail(Pais pais) {
         if (pais != null) {
             CtrlCountry.StartDetail(getContext(), pais);
