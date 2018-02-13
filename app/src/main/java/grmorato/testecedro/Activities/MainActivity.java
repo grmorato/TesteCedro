@@ -1,5 +1,6 @@
 package grmorato.testecedro.Activities;
 
+import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.support.design.widget.TabLayout;
@@ -26,6 +27,9 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     private TabLayout tabLayout;
     private Toolbar toolbar;
     private CallbackManager callbackManager;
+    private ProfileActivity profileFragment;
+    private CountriesActivity countriesFragment;
+    private FavoritesActivity favoritesFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,9 +48,12 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
         viewPager = findViewById(R.id.PagerView);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
         Pager pager = new Pager(getSupportFragmentManager(), tabLayout.getTabCount());
-        pager.getListFragment().add(new ProfileActivity());
-        pager.getListFragment().add(new CountriesActivity());
-        pager.getListFragment().add(new FavoritesActivity());
+        profileFragment = new ProfileActivity();
+        countriesFragment = new CountriesActivity();
+        favoritesFragment = new FavoritesActivity();
+        pager.getListFragment().add(profileFragment);
+        pager.getListFragment().add(countriesFragment);
+        pager.getListFragment().add(favoritesFragment);
         viewPager.setAdapter(pager);
         tabLayout.addOnTabSelectedListener(this);
     }
@@ -92,6 +99,13 @@ public class MainActivity extends AppCompatActivity implements TabLayout.OnTabSe
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         callbackManager.onActivityResult(requestCode, resultCode, data);
         super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode == 111)
+        {
+            if(viewPager.getCurrentItem() == 1)
+            {
+                countriesFragment.onActivityResult(requestCode, resultCode, data);
+            }
+        }
     }
 
 }

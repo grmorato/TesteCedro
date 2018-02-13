@@ -24,10 +24,11 @@ import java.util.Date;
 
 public class RecycleAdapter extends RecyclerView.Adapter<ItemHolderAdapter> {
 
-    private final ArrayList<Pais> listDados;
+    private ArrayList<Pais> listDados;
     private final Context context;
     private final OnItemClickListener onItemClickListener;
     private long touchDownMiliseconds;
+
 
     public RecycleAdapter(Context context, ArrayList<Pais> listDados, OnItemClickListener onItemClickListener) {
         this.context = context;
@@ -46,13 +47,14 @@ public class RecycleAdapter extends RecyclerView.Adapter<ItemHolderAdapter> {
         try
         {
             //busca e trata os dados
-            final Pais item = listDados.get(position);
+            final Pais item = getListDados().get(position);
             String msgCode = item.getAlpha2Code() == null ? " " : item.getAlpha2Code();
             String msgName = item.getName() == null ? " " : item.getName();
 
             //Seta os dados nos componentes
             holder.getWebView().loadData(LibMobile.GetImageUrl(item.getFlag()), "text/html", null);
             holder.getTexto().setText(msgCode + " - " + msgName);
+            holder.getCheck().setChecked(item.isSelect());
 
             //Seta os eventos específicos dos componentes
             holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -97,5 +99,16 @@ public class RecycleAdapter extends RecyclerView.Adapter<ItemHolderAdapter> {
     @Override
     public int getItemCount() {
         return listDados.size();
+    }
+
+    public ArrayList<Pais> getListDados()
+    {
+        return listDados;
+    }
+
+    public void setListDados(ArrayList<Pais> listDados)
+    {
+        this.listDados = listDados;
+        notifyDataSetChanged();
     }
 }

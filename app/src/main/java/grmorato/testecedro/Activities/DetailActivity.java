@@ -1,6 +1,8 @@
 package grmorato.testecedro.Activities;
 
+import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -128,7 +130,9 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
                             SetSavePais(pais);
                         }
                     });
-
+                    Intent returnIntent = new Intent();
+                    returnIntent.putExtra("result",true);
+                    setResult(Activity.RESULT_OK,returnIntent);
                     finish();
                     return null;
                 }

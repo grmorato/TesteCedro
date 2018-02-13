@@ -1,5 +1,7 @@
 package grmorato.testecedro.Activities;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -57,6 +59,17 @@ public class FavoritesActivity extends Fragment implements SwipeRefreshLayout.On
         listView.setLayoutManager(mLayoutManager);
         swipeRefresh = view.findViewById(R.id.swipeRefreshFavoritos);
         swipeRefresh.setOnRefreshListener(this);
+
+        view.findViewById(R.id.buttonSelectAll).setOnClickListener(this);
+        view.findViewById(R.id.buttonDeselectAll).setOnClickListener(this);
+        view.findViewById(R.id.buttonDelete).setOnClickListener(this);
+
+    }
+
+    @Override
+    public void onStart()
+    {
+        super.onStart();
         swipeRefresh.post(new Runnable()
         {
             @Override
@@ -66,13 +79,7 @@ public class FavoritesActivity extends Fragment implements SwipeRefreshLayout.On
                 LoadValues();
             }
         });
-
-        view.findViewById(R.id.buttonSelectAll).setOnClickListener(this);
-        view.findViewById(R.id.buttonDeselectAll).setOnClickListener(this);
-        view.findViewById(R.id.buttonDelete).setOnClickListener(this);
-
     }
-
 
     private void LoadValues()
     {
@@ -132,9 +139,12 @@ public class FavoritesActivity extends Fragment implements SwipeRefreshLayout.On
             {
                Pais pais = listPaises.get(i);
                pais.setSelect(select);
-               ItemHolderAdapter holder =(ItemHolderAdapter) listView.findViewHolderForAdapterPosition(i);
-               holder.getCheck().setChecked(select);
+               //ItemHolderAdapter holder =(ItemHolderAdapter) listView.findViewHolderForAdapterPosition(i);
+               //if(holder != null && holder.getCheck() != null)
+               //     holder.getCheck().setChecked(select);
             }
+            recycleAdapter.setListDados(listPaises);
+
         }
     }
 

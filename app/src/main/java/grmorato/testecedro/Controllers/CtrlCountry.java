@@ -1,5 +1,6 @@
 package grmorato.testecedro.Controllers;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.util.JsonReader;
@@ -70,7 +71,7 @@ public class CtrlCountry
     {
         Intent intent = new Intent(context, DetailActivity.class);
         intent.putExtra("Pais", pais);
-        context.startActivity(intent);
+        ((Activity) context).startActivityForResult(intent,111);
     }
 
 

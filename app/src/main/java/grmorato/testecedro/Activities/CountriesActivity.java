@@ -1,5 +1,7 @@
 package grmorato.testecedro.Activities;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.os.Bundle;
 import android.support.v4.widget.SwipeRefreshLayout;
@@ -56,7 +58,7 @@ public class CountriesActivity extends Fragment implements SwipeRefreshLayout.On
         if(LibMobile.CheckConMsg(getContext()))
         {
             AsyncTaskLoadWsCountries asyncTaskLoad = new AsyncTaskLoadWsCountries();
-            asyncTaskLoad.setContext(getContext());
+            asyncTaskLoad.setContext(getActivity());
             asyncTaskLoad.setGridview(gridview);
             asyncTaskLoad.setSwipeRefresh(swipeRefresh);
             asyncTaskLoad.execute();
@@ -69,5 +71,23 @@ public class CountriesActivity extends Fragment implements SwipeRefreshLayout.On
     public void onRefresh()
     {
         LoadValues();
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(requestCode ==111 && resultCode == Activity.RESULT_OK)
+        {
+            Boolean result=data.getBooleanExtra("result",false);
+            if(result)
+            {
+                swipeRefresh.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        LoadValues();
+                    }
+                });
+            }
+        }
     }
 }
