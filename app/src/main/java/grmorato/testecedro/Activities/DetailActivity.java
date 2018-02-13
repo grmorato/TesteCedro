@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.webkit.WebView;
 import android.widget.CheckedTextView;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -45,6 +46,7 @@ public class DetailActivity extends AppCompatActivity implements View.OnClickLis
         ((TextView) findViewById(R.id.textViewDetailCapital)).setText(pais.getCapital());
         ((TextView) findViewById(R.id.textViewDetailArea)).setText(pais.getArea());
         ((TextView) findViewById(R.id.textViewDetailPopulacao)).setText(pais.getPopulation());
+        ((WebView) findViewById(R.id.webViewDetailFlag)).loadData(LibMobile.GetImageUrl(pais.getFlag()), "text/html", null);
         Pais favorite = ctrlFavorites.GetPais(pais.getAlpha2Code());
         checkText.setChecked(favorite != null);
         if(favorite != null)
