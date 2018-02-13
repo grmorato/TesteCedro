@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="margin">20dp</dimen>
+    <dimen name="margin_splash">20dp</dimen>
     <dimen name="fontSize_titleProfile">24dp</dimen>
     <dimen name="fontSize_profile">20dp</dimen>
     <dimen name="app_bar_height">180dp</dimen>
@@ -8,6 +8,8 @@
     <dimen name="text_margin">16dp</dimen>
     <dimen name="imagelist">50dp</dimen>
     <dimen name="imageProfile">200dp</dimen>
+    <dimen name="icon">24dp</dimen>
     <dimen name="sinal">10dp</dimen>
+    <dimen name="margin_toolbar">10dp</dimen>
     <dimen name="webview">100dp</dimen>
 </resources>
