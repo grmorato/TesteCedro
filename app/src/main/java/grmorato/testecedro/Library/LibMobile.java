@@ -170,7 +170,7 @@ public class LibMobile
             public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
                 try {
                     calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
-                    calendar.set(Calendar.MINUTE, hourOfDay);
+                    calendar.set(Calendar.MINUTE, minute);
                     func.call();
                 } catch (Exception ex) {
                     Log.d("Error", ex.getMessage());
