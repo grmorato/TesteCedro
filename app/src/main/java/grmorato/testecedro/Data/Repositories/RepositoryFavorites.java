@@ -1,10 +1,12 @@
-package grmorato.testecedro.Data;
+package grmorato.testecedro.Data.Repositories;
 
 import android.content.Context;
 import android.database.Cursor;
 
 import java.util.ArrayList;
 
+import grmorato.testecedro.Data.ColumnDataBase;
+import grmorato.testecedro.Data.DataAccess;
 import grmorato.testecedro.Library.LibEnuns;
 import grmorato.testecedro.Library.LibFacebookService;
 import grmorato.testecedro.Models.Pais;
@@ -12,10 +14,13 @@ import grmorato.testecedro.Models.Pais;
 /**
  * Created by grmorato on 11/02/2018.
  */
-
+//Classe responsável por montar a estrutura para realizar as operações no banco de acordo com a tabela de histcountry
+//Foi criado a classe ColumnDataBase para mapear o campo que será usado no sql contendo o nome do mesmo, tipo e valor
 public class RepositoryFavorites
 {
+    //Classe reponsável realizar os sql no banco sqlite
     private final DataAccess dataAccess;
+    //Váriavel contendo o nome da tabela
     final String tableName = "histcountry";
     public RepositoryFavorites(Context context)
     {

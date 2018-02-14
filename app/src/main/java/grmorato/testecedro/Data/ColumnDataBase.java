@@ -6,6 +6,8 @@ import grmorato.testecedro.Library.LibEnuns;
  * Created by grmorato on 09/02/2018.
  */
 
+//Classe responsável por mapear os dados referente os campos das tabelas
+//Deixando assim a manipulação do banco mais generica
 public class ColumnDataBase
 {
     private String columnName;

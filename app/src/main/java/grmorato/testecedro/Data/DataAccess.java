@@ -15,6 +15,7 @@ import grmorato.testecedro.Library.LibEnuns;
  * Created by grmorato on 09/02/2018.
  */
 
+//Classe reponsável por montar as sqls para fazer as operações no banco de forma mais genérica
 public class DataAccess
 {
     private final MobileDataBaseHelper mobDataHelper;

@@ -5,13 +5,14 @@ import android.util.Log;
 
 import java.util.ArrayList;
 
-import grmorato.testecedro.Data.RepositoryFavorites;
+import grmorato.testecedro.Data.Repositories.RepositoryFavorites;
 import grmorato.testecedro.Models.Pais;
 
 /**
  * Created by grmorato on 11/02/2018.
  */
 
+//Classe de controle responsável por fazer a regra de negócio da tab de países já visitados
 public class CtrlFavorites {
     private final Context context;
     private final RepositoryFavorites repository;
@@ -22,6 +23,7 @@ public class CtrlFavorites {
     }
 
 
+    //Chama os métodos do repositório para fazer o insert ou update do país no banco de dados
     public void SalvarFavorite(Pais pais) {
         try {
             if (pais != null) {
@@ -39,6 +41,7 @@ public class CtrlFavorites {
         }
     }
 
+    //Chama o método do repositório para fazer o delete de um arraylist de vários paises no banco de dados
     public void DeleteVariosPais(ArrayList<Pais> listPais)
     {
         try
@@ -52,6 +55,7 @@ public class CtrlFavorites {
             Log.d("Error", ex.getMessage());
         }
     }
+    //Chama o método do repositório para fazer o delete do país no banco de dados
     public void DeletePais(String codPais) {
         try {
             repository.Delete(codPais);
@@ -60,6 +64,7 @@ public class CtrlFavorites {
         }
     }
 
+    //Faz um select no banco de dados e retona todos os países em um arraylist
     public ArrayList<Pais> GetListPaises() {
         try {
             ArrayList<Pais> listPais = repository.GetListPais();
@@ -70,6 +75,7 @@ public class CtrlFavorites {
         }
     }
 
+    //Faz um select no banco de dados e traz somente um país de acordo o codigo do país
     public Pais GetPais(String codPais) {
         try {
             Pais pais = repository.GetPais(codPais);

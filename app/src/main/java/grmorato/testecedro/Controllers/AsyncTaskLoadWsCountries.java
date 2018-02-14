@@ -14,6 +14,8 @@ import grmorato.testecedro.Models.Pais;
  * Created by grmorato on 09/02/2018.
  */
 
+
+//Classe responsável para buscara os dados dos países do webservice de forma assincrona e permitir atualizar o grid facilmente
 public class AsyncTaskLoadWsCountries extends AsyncTask<Void, Void,ArrayList<Pais>>
 {
     private GridView gridview;

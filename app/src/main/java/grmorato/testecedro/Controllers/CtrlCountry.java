@@ -4,22 +4,20 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.util.JsonReader;
-
 import java.io.IOException;
 import java.util.ArrayList;
-
 import grmorato.testecedro.Activities.DetailActivity;
-import grmorato.testecedro.Library.LibMobile;
 import grmorato.testecedro.Models.Pais;
 import grmorato.testecedro.Library.LibServiceRest;
 
 /**
  * Created by grmorato on 09/02/2018.
  */
-
+//Classe de controle responsável por fazer a regra de negócio da tab de países
 public class CtrlCountry
 {
-
+    //Metodo responsável por buscar o json do webservice com as informações, realizar o parse para o objeto país
+    // e retornar um arraylist das informações
     public ArrayList<Pais> GetListRestWebService() {
         try
         {
@@ -39,6 +37,7 @@ public class CtrlCountry
         }
     }
 
+    //Método para fazer o parse do json para o objeto país
     private Pais GetPais(JsonReader reader) throws IOException
     {
         Pais pais = new Pais();
@@ -67,6 +66,9 @@ public class CtrlCountry
         return pais;
     }
 
+    //Método para chamar a tela de detalhe passando o objeto país como parâmetro
+    //A tela é chamada com startActivityForResult para objeter o resultado da mesma na tela pai
+    //Foi feito dessa forma para ao fechar a tela ter como saber se foi realizado um save no banco caso sim recarrega o gridview
     public static void StartDetail(Context context,Pais pais)
     {
         Intent intent = new Intent(context, DetailActivity.class);

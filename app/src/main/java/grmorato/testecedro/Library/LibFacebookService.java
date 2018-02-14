@@ -26,8 +26,10 @@ import grmorato.testecedro.Models.UserProfile;
  * Created by grmorato on 10/02/2018.
  */
 
+//Classe responsável por manipular a api do facebook para realizar o login e retornar os dados do mesmo
 public class LibFacebookService {
 
+    //Classe responsável por encapsular os dados do usuário
     public static UserProfile userProfile;
 
     public static CallbackManager FacebookConfig(LoginButton loginButton, final Callable func) {

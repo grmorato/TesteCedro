@@ -15,12 +15,15 @@ import grmorato.testecedro.R;
 /**
  * Created by grmorato on 15/01/2016.
  */
-public class MobileDataBaseHelper<T> extends SQLiteOpenHelper {
-
+public class MobileDataBaseHelper<T> extends SQLiteOpenHelper
+{
+    //Nome do banco de dados da aplicação
     private static final String dataBaseName = "testecedro.db3";
+    //Caminho onde será salvo o banco de dados junto da aplicação
     private static final String dataBasePath = "/data/data/grmorato.testecedro/databases/";
     private final Context context;
 
+    //Chama o metodo no construtor para criar salvar o banco de dados do resource no local a ser utilizado
     public MobileDataBaseHelper(Context context) {
         super(context, dataBaseName, null, 1);
         this.context = context;
@@ -31,17 +34,19 @@ public class MobileDataBaseHelper<T> extends SQLiteOpenHelper {
         }
     }
 
-    //Metodo pode ser utilizado para criar as tabelas no banco diretamete
+    //Metodo pode ser utilizado para criar as tabelas no banco diretamete via sql
     @Override
     public void onCreate(SQLiteDatabase sqLiteDatabase) {
 
     }
 
+    //Metodo para realizar o update do banco em caso de atualizações
     @Override
     public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
 
     }
 
+    //Metodo para realizar o downgrade do banco em caso do usuário voltar a versão
     @Override
     public void onDowngrade(SQLiteDatabase db, int oldVersion, int newVersion) {
         super.onDowngrade(db, oldVersion, newVersion);
