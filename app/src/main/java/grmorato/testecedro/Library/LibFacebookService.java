@@ -32,6 +32,8 @@ public class LibFacebookService {
     //Classe responsável por encapsular os dados do usuário
     public static UserProfile userProfile;
 
+    //Metodo responsável por centralizar a configuração do butão de login do facebook em um só lugar
+    // e também o evento do mesmo. É passado por parâmetro uma função para ser chamada caso tenha algo a fazer após o login.
     public static CallbackManager FacebookConfig(LoginButton loginButton, final Callable func) {
         CallbackManager callbackManager = CallbackManager.Factory.create();
 
@@ -62,7 +64,10 @@ public class LibFacebookService {
         return callbackManager;
     }
 
-    public static void FacebookStateLogin(final Callable funcLogout) {
+    //Método responsável por conter os eventos de mudança AcessToken.
+    //Sendo assim  é utilizado para verificar se o usuário está logado ou não
+    public static void FacebookStateLogin(final Callable funcLogout)
+    {
         AccessTokenTracker tokenTracker = new AccessTokenTracker() {
 
             @Override
@@ -84,6 +89,7 @@ public class LibFacebookService {
     }
 
 
+    //Método responsável por fazer o request utilizando a api do facebook para retornar os dados do usuário
     public static void GetEmailProfile(final Callable func) {
         GraphRequest request = GraphRequest.newMeRequest(AccessToken.getCurrentAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
             @Override

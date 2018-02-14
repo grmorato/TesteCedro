@@ -45,47 +45,29 @@ import grmorato.testecedro.R;
  * Created by grmorato on 07/02/2018.
  */
 
-public class LibMobile {
-
+//Classe contendo métodos que não estão relacionados a uma regra de negócio em si
+public class LibMobile
+{
     private final Context context;
-    private ProgressDialog mProgressDialog;
 
     public LibMobile(Context context) {
         this.context = context;
     }
 
+    //Método para chamar qualquer activity
     public static <C> void StartActivity(Context context, Class<C> classe) {
         Intent intent = new Intent(context, classe);
         context.startActivity(intent);
     }
 
+    //Método com a função de verificar a conexão com a internet
     public static boolean VerificarConexao(Context context) {
         ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo netInfo = connectivityManager.getActiveNetworkInfo();
         return netInfo != null && netInfo.isAvailable() && netInfo.isConnected();
     }
 
-    public void ShowProgressDialog(boolean semAnimacao) {
-
-        if (mProgressDialog == null) {
-            mProgressDialog = new ProgressDialog(context);
-            mProgressDialog.setIndeterminate(true);
-            mProgressDialog.setCanceledOnTouchOutside(false);
-            mProgressDialog.setCancelable(false);
-        }
-        if (mProgressDialog.isShowing())
-            return;
-        mProgressDialog.show();
-    }
-
-    public void hideProgressDialog() {
-
-        if (mProgressDialog != null && mProgressDialog.isShowing()) {
-            mProgressDialog.dismiss();
-        }
-
-    }
-
+    //Método para exibir um alert e passa como parâmetro uma função para fazer ou não uma ação no positive button
     public static void AlertMessage(int resourceMessage, final Context context, final Callable func) {
         final AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setMessage(resourceMessage);
@@ -107,6 +89,7 @@ public class LibMobile {
         alerta.show();
     }
 
+    //Método que chama um alert question onde passa duas funções como parâmetro de sim e outro de não
     public static void AlertMessageQuestion(int resourceMessage, final Context context, final Callable funcYes, final Callable funcNo)
     {
         DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
@@ -146,6 +129,8 @@ public class LibMobile {
 
     }
 
+    //Método que chama ou DatePicker ou o TimePicker e passa uma função para buscar o resultado e fazer uma ação com o mesmo
+    //Por exemplo alimentar o textview com a data e hora
     public static void DateTimePicker(Context context, boolean isDate, final Calendar calendar, final Callable func) {
         if (isDate) {
 
@@ -157,7 +142,7 @@ public class LibMobile {
         }
     }
 
-    //Metodo para criar o evento que retorna a data selecionada
+    //Método para criar o evento que retorna a data selecionada
     private static DatePickerDialog.OnDateSetListener GetDateEventListener(final Calendar calendar, final Callable func) {
         DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
             @Override
@@ -178,7 +163,7 @@ public class LibMobile {
         return dateSetListener;
     }
 
-    //Metodo que retornar a  hora selecionada
+    //Método que retornar a  hora selecionada
     private static TimePickerDialog.OnTimeSetListener GetTimeEventListener(final Calendar calendar, final Callable func) {
         TimePickerDialog.OnTimeSetListener timeSetListener = new TimePickerDialog.OnTimeSetListener() {
             @Override
@@ -195,17 +180,21 @@ public class LibMobile {
         return timeSetListener;
     }
 
+    //Método que trata uma url de  uma imagem via html básico
+    // Dimensionando a mesma para um tamanho menor e deixando o layout mais agradável no webview das bandeiras
     public static String GetImageUrl(String url) {
-        String data = "<html><head><title>Example</title><meta name=\"viewport\"\"content=\"width=100, initial-scale=0.65 \" /></head>";
+        String data = "<html><head><title>Image</title><meta name=\"viewport\"\"content=\"width=100, initial-scale=0.65 \" /></head>";
         data = data + "<body><center><img width=100 src=\"" + url + "\" /></center></body></html>";
         return data;
     }
 
+    //Converte um date em string
     public static String StringDateFormat(Date date) {
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy HH:mm:ss", new Locale("pt", "BR"));
         return formato.format(date);
     }
 
+    //Converte um byte[] em Bitmap para exibir em um imageview
     public static  Bitmap ConvertByteArrayToBitmap(byte[] bytes)
     {
         Bitmap bmp = BitmapFactory.decodeByteArray(bytes,0,bytes.length);
@@ -213,6 +202,7 @@ public class LibMobile {
     }
 
 
+    //Pega os dados do inputStream e gera um byte[]
     public static byte[] ConvertStreamToByteArray(InputStream inputStream) throws IOException {
         ByteArrayOutputStream buffer = new ByteArrayOutputStream();
 
@@ -229,6 +219,7 @@ public class LibMobile {
 
     }
 
+    //Verifica se existe a conexão com a internet caso não exibe uma msg e retorna false
     public static Boolean CheckConMsg(Context context)
     {
         if(!LibMobile.VerificarConexao(context))

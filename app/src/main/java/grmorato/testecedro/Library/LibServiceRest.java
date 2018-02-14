@@ -14,15 +14,18 @@ import javax.net.ssl.HttpsURLConnection;
  * Created by grmorato on 09/02/2018.
  */
 
+//Classe responsável por conectar no webservice e fazer a requisão e objer o json com os dados
 public class LibServiceRest
 {
 
+    //Realiza a conexão https com a url e retorna a mesma
     public static HttpsURLConnection GetConnection(String url) throws IOException {
         URL urlConnection = new URL(url);
         HttpsURLConnection myConnection = (HttpsURLConnection) urlConnection.openConnection();
         return myConnection;
     }
 
+    //Faz na url do webservice busca o retorno do webservice rest e cria o jsonReader para fazer o parse
     public static JsonReader GetJsonRespose(String url)
     {
         try {
@@ -41,6 +44,7 @@ public class LibServiceRest
         }
     }
 
+    //Método responsável por buscar um arquivo em uma url e retornar o mesmo em byte[]
     public static byte[] GetImageUrl(String url)
     {
         try
